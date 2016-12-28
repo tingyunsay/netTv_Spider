@@ -25,11 +25,11 @@ import datetime
 from scrapy.item import Item,Field
 import hashlib
 from netTv_Spider.Path_translate import Relative_to_Absolute,Get_Valid_Url,get_HeadUrl
-from netTv_Spider.Total_page_circulate import Total_page_circulate
+from netTv_Spider.Total_page_circulate import Total_page_circulate,Turn_True_Page
 
 
 class netTvSpider(scrapy.Spider):
-	name ='tecent'
+	name ='tencent_show'
 	allowed_domain = []
 		
 	def __init__(self,*args,**kwargs):
@@ -110,6 +110,40 @@ class netTvSpider(scrapy.Spider):
 								request.meta['Final_Xpath'] = Final_Xpath
 								yield request	
 				
+			if len(v[1]) == 4:
+				self.Index_Url = v[1][0]['Index_Url']
+				Is_Json = v[1][0]['Is_Json']
+				Max_Page = v[1][0]['Max_Page']
+				All_Detail_Page = v[1][1]['All_Detail_Page']
+				Signal_Detail_Page = v[1][2]['Signal_Detail_Page']
+				Final_Xpath = v[1][3]['Final_Xpath']
+				if Is_Json == 1:
+						for url in self.Index_Url:
+								request = Request(url,callback = self.parse_json)
+								request.meta['Index_Url'] = url
+								request.meta['Max_Page'] = Max_Page
+								request.meta['All_Detail_Page'] = All_Detail_Page
+								request.meta['Signal_Detail_Page'] = Signal_Detail_Page
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
+				else:
+						for url in self.Index_Url:
+								request = Request(url,callback = self.parse_splash,meta={
+											'splash':{
+													'endpoint':'render.html',
+													'args':{
+															'wait':0.5,
+															'images':0,
+															'render_all':1
+														}
+													}
+												})
+								request.meta['Index_Url'] = url
+								request.meta['Max_Page'] = Max_Page
+								request.meta['All_Detail_Page'] = All_Detail_Page
+								request.meta['Signal_Detail_Page'] = Signal_Detail_Page
+								request.meta['Final_Xpath'] = Final_Xpath
+								yield request
 
 			if len(v[1]) == 5:
 				self.Index_Url = v[1][0]['Index_Url']
@@ -165,13 +199,18 @@ class netTvSpider(scrapy.Spider):
 				print Exception,":",e
 		#这里是替换末尾的\d+，记住，遇上其他情况，就扩展这个get_HeadUrl()
 		urls = get_HeadUrl(Index_Url,self.name)
-
-		max_pages = Total_page_circulate(self.name,int(max_pages))
+		try:
+				max_pages = Total_page_circulate(self.name,int(max_pages))
+		except Exception,e:
+				print Exception,":",e
+		
 		print "最大页数是:%d"%max_pages
 		if All_Detail_Page is None:
 				#for i in range(1,max_pages+1):
 				for i in range(1,2):
+						i = Turn_True_Page(i,self.name)
 						url = urls.format(page=str(i))
+						print "now the url is %s"%url
 						request = Request(url,callback = self.parse_final,dont_filter=True,meta={
 											'splash':{
 											'endpoint':'render.html',
@@ -366,7 +405,7 @@ class netTvSpider(scrapy.Spider):
 						except Exception,e:
 								print Exception,":",e
 		detail_url = Relative_to_Absolute(Index_Url,response.xpath(Signal_Detail_Page['xpath']).extract())
-		if Signal_Detail_Page is None:
+		if Target_Detail_Page is None:
 				for url in detail_url:
 						request = Request(url,callback = self.parse_final,meta={
 												'splash':{
@@ -380,7 +419,6 @@ class netTvSpider(scrapy.Spider):
 											})
 						request.meta['Some_Info'] = Some_Info
 						request.meta['Final_Xpath'] = Final_Xpath
-						#time.sleep(4)
 						yield request
 		else:
 				for url in detail_url:

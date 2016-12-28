@@ -17,6 +17,14 @@ def Total_page_circulate(site_name,max_pages):
 			return max_pages
 
 
+def Turn_True_Page(i,site_name):
+	if site_name == "tencent_show":
+			return (i - 1)*30
+	else:
+			return i
+
+
+
 def Total_page_circulate2(site_name,max_pages):
 	if site_name == "letv":
 			return (max_pages/14)+1
