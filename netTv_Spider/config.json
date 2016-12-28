@@ -38,34 +38,39 @@
 			}],
 	"youku_show":[{
 				"Is_Json":0,
-				"Index_Url":[""],
+				"Index_Url":["http://list.youku.com/category/show/c_85_r_2016_s_1_d_1_p_1.html"],
 				"Max_Page":{
-						"xpath":"",
+						"xpath":"//ul[@class=\"yk-pages\"]/li[last()-1]/a/text()",
 						"re":".+"
 					}
 			},
 			{
 				"All_Detail_Page":{
-						"xpath":[""]
+						"xpath":["//li[@class=\"yk-col4 mr1\"]/div/a/@href"]
 					}
 			},
 			{
+				"Signal_Detail_Page":{
+						"xpath":"//div[@id=\"module_basic_sub\"]/dl/dt/a/@href"
+					}		
+			},
+			{
 				"Final_Xpath":{
-						"site_name":[""],
-						"show_name":[""],
-						"show_introduce":[""],
-						"tv_station":[""],
-						"ares":[""],
-						"first_show":[""],
-						"update_times":[""],
-						"host":[""],
-						"play_counts":[""],
-						"fav_counts":[""],
-						"score_level":[""],
-						"fans_counts":[""],
-						"style_classify":[""],
-						"comment_counts":[""],
-						"score_counts":[""]
+						"site_name":["youku_show"],
+						"show_name":["//li[@class=\"p-row p-title\"]/a[1]/@href"],
+						"show_introduce":["//li[@class=\"p-row p-intro\"]/span[@class=\"text\"]/text()"],
+						"tv_station":["//div[@class=\"p-base\"]/ul/li[5]/a/text()"],
+						"ares":["//div[@class=\"p-base\"]/ul/li[4]/a/text()"],
+						"first_show":["/"],
+						"update_time":["//li[@class=\"p-row p-renew\"]/text()"],
+						"host":["//li[@class=\"p-row \"]/text()"],
+						"play_counts":["//li[@class=\"p-score\"]/following-sibling::*[1]/text()"],
+						"fav_counts":["//li[@class=\"p-score\"]/following-sibling::*[3]/text()"],
+						"score_level":["//li[@class=\"p-score\"]/span[@class=\"star-num\"]/text()"],
+						"fans_counts":["/"],
+						"style_classify":["//div[@class=\"p-base\"]/ul/li[6]/a/text()"],
+						"comment_counts":["//li[@class=\"p-score\"]/following-sibling::*[2]/text()"],
+						"score_counts":["/"]
 					}
 			}],
 	"mangguo_show":[{
@@ -89,7 +94,7 @@
 						"tv_station":[""],
 						"ares":[""],
 						"first_show":[""],
-						"update_times":[""],
+						"update_time":[""],
 						"host":[""],
 						"play_counts":[""],
 						"fav_counts":[""],
@@ -121,7 +126,7 @@
 						"tv_station":[""],
 						"ares":[""],
 						"first_show":[""],
-						"update_times":[""],
+						"update_time":[""],
 						"host":[""],
 						"play_counts":[""],
 						"fav_counts":[""],
@@ -153,7 +158,7 @@
 						"tv_station":[""],
 						"ares":[""],
 						"first_show":[""],
-						"update_times":[""],
+						"update_time":[""],
 						"host":[""],
 						"play_counts":[""],
 						"fav_counts":[""],
@@ -185,7 +190,7 @@
 						"tv_station":[""],
 						"ares":[""],
 						"first_show":[""],
-						"update_times":[""],
+						"update_time":[""],
 						"host":[""],
 						"play_counts":[""],
 						"fav_counts":[""],
@@ -217,7 +222,7 @@
 						"tv_station":[""],
 						"ares":[""],
 						"first_show":[""],
-						"update_times":[""],
+						"update_time":[""],
 						"host":[""],
 						"play_counts":[""],
 						"fav_counts":[""],
