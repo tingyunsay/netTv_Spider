@@ -75,34 +75,39 @@
 			}],
 	"mangguo_show":[{
 				"Is_Json":0,
-				"Index_Url":[""],
+				"Index_Url":["http://list.mgtv.com/1/---------2-1-0--.html"],
 				"Max_Page":{
-						"Xpath":"",
+						"xpath":"//div[@class=\"w-pages w-pages-default \"]/ul/li[last()-1]/a/text()",
 						"re":".+"
 					}
 			},
 			{
 				"All_Detail_Page":{
-						"xpath":[""]
+						"xpath":["//ul[@class=\"v-list-inner\"]/li/a[@class=\"u-video\"]/@href"]
 					}
 			},
 			{
-				"Final_xpath":{
-						"site_name":[""],
-						"show_name":[""],
-						"show_introduce":[""],
-						"tv_station":[""],
-						"ares":[""],
-						"first_show":[""],
-						"update_time":[""],
-						"host":[""],
-						"play_counts":[""],
-						"fav_counts":[""],
-						"score_level":[""],
-						"fans_counts":[""],
-						"style_classify":[""],
-						"comment_counts":[""],
-						"score_counts":[""]
+				"Signal_Detail_Page":{
+						"xpath":"//div[@class=\"v-panel-route\"]/a[3]/@href"
+					}		
+			},
+			{
+				"Final_Xpath":{
+						"site_name":["mangguo_show"],
+						"show_name":["//div[@class=\"v-info-album-header\"]/h1[@class=\"title\"]/span/text()"],
+						"show_introduce":["//div[@class=\"v-meta v-meta-album\"]/p[@class=\"item\"]/span/text()"],
+						"tv_station":["//div[@class=\"v-meta v-meta-album\"]/p[@class=\"item short\"][1]/a/text()"],
+						"ares":["//div[@class=\"v-meta v-meta-album\"]/p[@class=\"item short\"][2]/a/text()"],
+						"first_show":["/"],
+						"update_time":["//div[@class=\"v-info-album-header\"]/p[@class=\"details\"]/span[@class=\"status\"]/b/text()"],
+						"host":["//div[@class=\"v-meta v-meta-album\"]/p[@class=\"item long\"][1]/a/text()"],
+						"play_counts":["//div[@class=\"v-info-album-header\"]/p[@class=\"details\"]/span[@class=\"total\"]/em/text()"],
+						"fav_counts":["/"],
+						"score_level":["/"],
+						"fans_counts":["/"],
+						"style_classify":["//div[@class=\"v-meta v-meta-album\"]/p[@class=\"item long\"][2]/a/text()"],
+						"comment_counts":["//div[@class=\"v-info-album-header\"]/p[@class=\"details\"]/span[@class=\"comments\"]/a/span/text()"],
+						"score_counts":["/"]
 					}
 			}],
 	"letv_show":[{
