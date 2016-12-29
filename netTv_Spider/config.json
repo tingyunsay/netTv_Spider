@@ -46,7 +46,7 @@
 			},
 			{
 				"All_Detail_Page":{
-						"xpath":["//li[@class=\"yk-col4 mr1\"]/div/a/@href"]
+						"xpath":["//li[@class=\"yk-col4 mr1\"]/div/div/a/@href"]
 					}
 			},
 			{
@@ -57,13 +57,13 @@
 			{
 				"Final_Xpath":{
 						"site_name":["youku_show"],
-						"show_name":["//li[@class=\"p-row p-title\"]/a[1]/@href"],
+						"show_name":["//li[@class=\"p-row p-title\"]/text()"],
 						"show_introduce":["//li[@class=\"p-row p-intro\"]/span[@class=\"text\"]/text()"],
 						"tv_station":["//div[@class=\"p-base\"]/ul/li[5]/a/text()"],
 						"ares":["//div[@class=\"p-base\"]/ul/li[4]/a/text()"],
 						"first_show":["/"],
 						"update_time":["//li[@class=\"p-row p-renew\"]/text()"],
-						"host":["//li[@class=\"p-row \"]/text()"],
+						"host":["//li[@class=\"p-row \"]/a/text()"],
 						"play_counts":["//li[@class=\"p-score\"]/following-sibling::*[1]/text()"],
 						"fav_counts":["//li[@class=\"p-score\"]/following-sibling::*[3]/text()"],
 						"score_level":["//li[@class=\"p-score\"]/span[@class=\"star-num\"]/text()"],
