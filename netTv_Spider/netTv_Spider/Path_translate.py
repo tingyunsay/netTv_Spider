@@ -53,6 +53,8 @@ def get_HeadUrl(index_url,spider_name):
 			return re.sub(r"\d.html","{page}.html",index_url)
 	if spider_name == "mangguo_show":
 			return re.sub(r"\d-0--.html","{page}-0--.html",index_url)
+	if spider_name == "souhu_show":
+			return re.sub(r"\d_p11_p12_p13.html","{page}_p11_p12_p13.html",index_url)
 	else:
 			return re.sub("(\d+)$","{page}",index_url)
 	

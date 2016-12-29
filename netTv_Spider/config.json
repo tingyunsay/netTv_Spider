@@ -144,42 +144,41 @@
 			}],
 	"souhu_show":[{
 				"Is_Json":0,
-				"Index_Url":[""],
+				"Index_Url":["http://so.tv.sohu.com/list_p1106_p2_p3_p4_p5_p6_p73_p8_p9_p101_p11_p12_p13.html"],
 				"Max_Page":{
-						"xpath":"",
+						"xpath":"//div[@class=\"ssPages area\"]/a[last()-1]/text()",
 						"re":".+"
 					}
 			},
 			{
 				"All_Detail_Page":{
-						"xpath":[""]
+						"xpath":["//ul[@class=\"st-list cfix\"]/li/div[@class=\"st-pic\"]/a[1]/@href"]
 					}
 			},
 			{
 				"Final_Xpath":{
-						"site_name":[""],
-						"show_name":[""],
-						"show_introduce":[""],
-						"tv_station":[""],
-						"ares":[""],
-						"first_show":[""],
-						"update_time":[""],
-						"host":[""],
-						"play_counts":[""],
-						"fav_counts":[""],
-						"score_level":[""],
-						"fans_counts":[""],
-						"style_classify":[""],
-						"comment_counts":[""],
-						"score_counts":[""]
+						"site_name":["souhu_show"],
+						"show_name":["//div[@class=\"show-name area rel cfix\"]/h2/text()"],
+						"show_introduce":["//span[@class=\"full_intro\"]/text()"],
+						"tv_station":["//div[@class=\"infoR\"]/ul[1]/li[2]/a/text()"],
+						"ares":["//div[@class=\"infoR\"]/ul[1]/li[3]/a/text()"],
+						"first_show":["/"],
+						"update_time":["//em[@class=\"c-red\"]/text()"],
+						"host":["//li[@style=\"height:auto\"]/a/text()"],
+						"play_counts":["//em[@class=\"total-play\"]/text()"],
+						"fav_counts":["/"],
+						"score_level":["//strong[@class=\"score\"]/text()"],
+						"fans_counts":["/"],
+						"style_classify":["//div[@class=\"infoR\"]/ul[1]/li[4]/a/text()"],
+						"comment_counts":["//em[@class=\"comment-num\"]/text()"],
+						"score_counts":["//em[@class=\"score-sum\"]/text()"]
 					}
 			}],
 	"tudou_show":[{
-				"Is_Json":0,
-				"Index_Url":[""],
+				"Is_Json":1,
+				"Index_Url":["http://www.tudou.com/s3portal/service/pianku/data.action?pageSize=90&app=mainsitepc&tags=2374&tagType=3&firstTagId=6&pageNo=1"],
 				"Max_Page":{
-						"xpath":"",
-						"re":".+"
+						"index":""
 					}
 			},
 			{
