@@ -29,7 +29,7 @@ from netTv_Spider.Total_page_circulate import Total_page_circulate,Turn_True_Pag
 
 
 class netTvSpider(scrapy.Spider):
-	name ='mangguo_show'
+	name ='wwmangguo_show'
 	allowed_domain = []
 		
 	def __init__(self,*args,**kwargs):
