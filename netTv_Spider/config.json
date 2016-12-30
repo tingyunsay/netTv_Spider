@@ -240,9 +240,41 @@
 						"comment_counts":[""],
 						"score_counts":[""]
 					}
+			}],
+
+	"tencent_sp":[{
+				"Is_Json":0,
+				"Index_Url":["http://v.qq.com/x/varietylist/?iyear=2016&offset=0"],
+				"Max_Page":{
+						"xpath":"//a[@class=\"page_btn page_num\"][last()]/span[@class=\"btn_inner\"]/text()",
+						"re":".+"
+					}
+			},
+			{
+				"All_Detail_Page":{
+						"xpath":["//li[@class=\"list_item\"]/a[@class=\"figure\"]/@href"]
+					}
+			},
+			{
+				"Signal_Detail_Page":{
+						"xpath":"//ul[@class=\"figures_list _column_list\"]/li/div/a[1]/@href"
+					}		
+			},
+			{
+				"Final_Xpath":{
+						"site_name":["tencent_sp"],
+						"show_name":["//h1[@class=\"video_title\"]/@title"],
+						"publish_time":["//li[@class=\"list_item current\"]/div/a[1]/div/span/text()"],
+						"host":["//ul[@class=\"mod_recomitem_list _stars_list\"]/li/@title"],
+						"guest":["//div[@class=\"album_line\"]/span[@class=\"item\"]/a/text()"],
+						"sp_plays":["//em[@id=\"mod_cover_playnum\"]/text()"],
+						"comment_counts":["//a[@id=\"commentTotleNum\"]/span/text()"],
+						"barrage_counts":["//span[@class=\"txp_hl\"]/text()"],
+						"fav_counts":["/"],
+						"step_counts":["/"],
+						"discuss_counts":["/"],
+						"vote_count":["/"]
+				}
 			}]
-
-
-
 
 }
