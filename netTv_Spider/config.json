@@ -275,6 +275,40 @@
 						"discuss_counts":["/"],
 						"vote_count":["/"]
 				}
+			}],
+	"youku_sp":[{
+				"Is_Json":0,
+				"Index_Url":["http://list.youku.com/category/show/c_85_r_2016_s_1_d_1_p_1.html"],
+				"Max_Page":{
+						"xpath":"//ul[@class=\"yk-pages\"]/li[last()-1]/a/text()",
+						"re":".+"
+					}
+			},
+			{
+				"All_Detail_Page":{
+						"xpath":["//li[@class=\"yk-col4 mr1\"]/div/div/a/@href"]
+					}
+			},
+			{
+				"Signal_Detail_Page":{
+						"xpath":"//div[@class=\"items\"]/div[@class=\"item\"]/div/div/a/@href"
+					}		
+			},
+			{
+				"Final_Xpath":{
+						"site_name":["youku_sp"],
+						"show_name":["//span[@id=\"subtitle\"]/@title"],
+						"publish_time":["//h1[@class=\"title\"]/span[2]/text()"],
+						"host":["/"],
+						"guest":["/"],
+						"sp_plays":["//span[@id=\"videoTotalPV\"]/em/text()"],
+						"comment_counts":["//div[@class=\"program  current\"]/a/div[@class=\"status\"]/span[2]/text()"],
+						"barrage_counts":["/"],
+						"fav_counts":["//span[@id=\"upVideoTimes\"]/text()"],
+						"step_counts":["//span[@id=\"downVideoTimes\"]/text()"],
+						"discuss_counts":["/"],
+						"vote_count":["/"]
+				}
 			}]
 
 }
