@@ -309,6 +309,148 @@
 						"discuss_counts":["/"],
 						"vote_count":["/"]
 				}
+			}],
+	"tudou_sp":[{
+				"Is_Json":1,
+				"Index_Url":["http://www.tudou.com/s3portal/service/pianku/data.action?pageSize=90&app=mainsitepc&tags=2374&tagType=3&firstTagId=6&pageNo=1"],
+				"Max_Page":{
+						"index":["total"]
+					}
+			},
+			{
+				"All_Detail_Page":{
+						"index":["items","playUrl"]
+					}
+			},
+			{
+				"Signal_Detail_Page":{
+						"xpath":"//div[@class=\"list_data fix\"]/a/@href"
+					}		
+			},
+			{
+				"Final_Xpath":{
+						"site_name":["tudou_sp"],
+						"show_name":["//h1[@id=\"videoKw\"]/@title"],
+						"publish_time":["/"],
+						"host":["/"],
+						"guest":["//div[@class=\"h\"]/ul/li[@data-pid]/a[2]/text()"],
+						"sp_plays":["//div[@id=\"exponentWrap\"]/a/span/text()"],
+						"comment_counts":["//div[@id=\"actionComments\"]/a/i[2]/text()"],
+						"barrage_counts":["/"],
+						"fav_counts":["//div[@class=\"dig_container\"]/a/span/text()"],
+						"step_counts":["/"],
+						"discuss_counts":["/"],
+						"vote_count":["/"]
+				}
+			}],
+	"mangguo_sp":[{
+				"Is_Json":0,
+				"Index_Url":["http://list.mgtv.com/1/---------2-1-0--.html"],
+				"Max_Page":{
+						"xpath":"//div[@class=\"w-pages w-pages-default \"]/ul/li[last()-1]/a/text()",
+						"re":".+"
+					}
+			},
+			{
+				"All_Detail_Page":{
+						"xpath":["//ul[@class=\"v-list-inner\"]/li/a[@class=\"u-video\"]/@href"]
+					}
+			},
+			{
+				"Signal_Detail_Page":{
+						"xpath":"//div[@class=\"u-tabbox u-tab-month\"][1]/div/ul/li/@m-id"
+					}		
+			},
+			{
+				"Final_Xpath":{
+						"site_name":["mangguo_sp"],
+						"show_name":["//div[@class=\"v-panel v-panel-v5 \"]/h1/@title"],
+						"publish_time":["/"],
+						"host":["//div[@class=\"v-panel-meta\"]/p[@class=\"u-meta-long\"][1]/a/text()"],
+						"guest":["/"],
+						"sp_plays":["//b[@id=\"honey-click-stats\"]/text()"],
+						"comment_counts":["//span[@id=\"c-comment-loading-status\"]/text()"],
+						"barrage_counts":["/"],
+						"fav_counts":["//a[@class=\"up v-panel-submod\"]/em/text()"],
+						"step_counts":["//a[@class=\"down v-panel-submod\"]/em/text()"],
+						"discuss_counts":["/"],
+						"vote_count":["/"]
+					}
+			}],
+	"souhu_sp":[{
+				"Is_Json":0,
+				"Index_Url":["http://so.tv.sohu.com/list_p1106_p2_p3_p4_p5_p6_p73_p8_p9_p101_p11_p12_p13.html"],
+				"Max_Page":{
+						"xpath":"//div[@class=\"ssPages area\"]/a[last()-1]/text()",
+						"re":".+"
+					}
+			},
+			{
+				"All_Detail_Page":{
+						"xpath":["//ul[@class=\"st-list cfix\"]/li/div[@class=\"st-pic\"]/a[1]/@href"]
+					}
+			},
+			{
+				"Signal_Detail_Page":{
+						"xpath":"//em[@data-plid]/@data-plid"
+					}		
+			},
+			{
+				"Final_Xpath":{
+						"site_name":["souhu_sp"],
+						"show_name":["//div[@id=\"crumbsBar\"]/div/div[1]/h2/text()"],
+						"publish_time":["/"],
+						"host":["/"],
+						"guest":["//div[@class=\"rlIname role-vstar\"]/strong/a/@title"],
+						"sp_plays":["//div[@class=\"vBox vBox-play vBox-play-panel\"]/a/em/i/text()"],
+						"comment_counts":["//span[@class=\"fs14 c_999\"]/text()"],
+						"barrage_counts":["/"],
+						"fav_counts":["//div[@class=\"vBox vBox-ding\"]/a/em/i/text()"],
+						"step_counts":["//div[@class=\"vBox vBox-cai\"]/a/em/i/text()"],
+						"discuss_counts":["/"],
+						"vote_count":["/"]
+					}
+			}],
+	"letv_sp":[{
+				"Is_Json":1,
+				"Index_Url":["http://list.le.com/apin/chandata.json?c=11&d=1&md=&o=3&s=3&p=2"],
+				"Max_Page":{
+						"index":["data_count"]
+					}
+			},
+			{
+				"All_Detail_Page":{
+						"index":["data_list","aid"]
+					}
+			},
+			{
+				"Signal_Detail_Page":{
+						"xpath":"//div[@tab-bthdr=\"data-tabbtt\"]/a/@list-month"
+					}	
+			},
+			{
+				"Final_Xpath":{
+						"site_name":["letv_sp"],
+						"show_name":["//h1[@class=\"j-video-name video-name\"]/@title"],
+						"publish_time":["//div[@class=\"juji_positive\"]/a/em/text()"],
+						"host":["/"],
+						"guest":["/"],
+						"sp_plays":["//div[@class=\"juji_positive\"]/a/p/i/text()"],
+						"comment_counts":["//em[@id=\"video_commentcount\"]/text()"],
+						"barrage_counts":["/"],
+						"fav_counts":["/"],
+						"step_counts":["/"],
+						"discuss_counts":["/"],
+						"vote_count":["/"]
+					}
 			}]
+
+
+
+
+
+
+
+
 
 }
