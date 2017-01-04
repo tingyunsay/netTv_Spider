@@ -425,7 +425,10 @@
 			},
 			{
 				"Signal_Detail_Page":{
-						"xpath":"//div[@tab-bthdr=\"data-tabbtt\"]/a/@list-month"
+						"xpath":"//p[@tab-bthdr=\"data-tabbtt\"]/a/@list-month",
+						"Some_Info":{
+							"host":"//dd[@data-statectn=\"n_textInfo\"]/p[1]/a/text()"
+							}
 					}	
 			},
 			{
@@ -433,14 +436,13 @@
 						"site_name":["letv_sp"],
 						"show_name":["//h1[@class=\"j-video-name video-name\"]/@title"],
 						"publish_time":["//div[@class=\"juji_positive\"]/a/em/text()"],
-						"host":["/"],
-						"guest":["/"],
-						"sp_plays":["//div[@class=\"juji_positive\"]/a/p/i/text()"],
-						"comment_counts":["//em[@id=\"video_commentcount\"]/text()"],
+						"guest":["//li[@class=\"li_03\"]/em/a/text()"],
+						"sp_plays":["//div[@class=\"juji_positive\"]/a/p[@k-name=\"send-click-stat\"]/i[@class=\"i_playNum\"]/text()"],
+						"comment_counts":["/"],
 						"barrage_counts":["/"],
 						"fav_counts":["/"],
 						"step_counts":["/"],
-						"discuss_counts":["/"],
+						"discuss_counts":["//em[@id=\"video_commentcount\"]/text()"],
 						"vote_count":["/"]
 					}
 			}]

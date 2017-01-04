@@ -13,6 +13,11 @@ def Relative_to_Absolute(index_url,url_tail,site_name):
 		for i in url_tail:
 			res_urls.append("http://www.le.com/zongyi/{aid}.html".format(aid=i))
 		return res_urls
+	elif site_name == "letv_sp":
+		res_urls = []
+		for i in url_tail:
+			res_urls.append("http://www.le.com/zongyi/{aid}.html".format(aid=i))
+		return res_urls
 	else:
 		head_url = re.search(r'(.+//).+?/',index_url).group()
 		if type(url_tail) is list and len(url_tail) > 0:
