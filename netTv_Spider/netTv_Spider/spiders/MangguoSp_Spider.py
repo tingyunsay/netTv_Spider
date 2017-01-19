@@ -207,8 +207,7 @@ class netTvSpider(scrapy.Spider):
 		
 		print "最大页数是:%d"%max_pages
 		if All_Detail_Page is None:
-				#for i in range(1,max_pages+1):
-				for i in range(1,2):
+				for i in range(1,max_pages+1):
 						i = Turn_True_Page(i,self.name)
 						url = urls.format(page=str(i))
 						request = Request(url,callback = self.parse_final,dont_filter=True,meta={
@@ -224,8 +223,7 @@ class netTvSpider(scrapy.Spider):
 						request.meta['Final_Xpath'] = Final_Xpath
 						yield request
 		else:
-				#for i in range(1,int(max_pages)+1):
-				for i in range(1,2):
+				for i in range(1,int(max_pages)+1):
 						try:
 								i = Turn_True_Page(i,self.name)
 								url = urls.format(page=str(i))
@@ -270,8 +268,7 @@ class netTvSpider(scrapy.Spider):
 		max_pages = Total_page_circulate(self.name,int(res_json))
 		print "最大页数是:%d"%max_pages
 		if All_Detail_Page is None:
-				#for i in range(1,max_pages+1):
-				for i in range(1,2):
+				for i in range(1,max_pages+1):
 						i = Turn_True_Page(i,self.name)
 						url = urls.format(page=str(i))
 						request = Request(url,callback = self.parse_final,dont_filter=True,meta={
@@ -287,8 +284,7 @@ class netTvSpider(scrapy.Spider):
 						request.meta['Final_Xpath'] = Final_Xpath
 						yield request
 		else:
-				#for i in range(1,int(max_pages)+1):
-				for i in range(1,2):
+				for i in range(1,int(max_pages)+1):
 						try:
 								i = Turn_True_Page(i,self.name)
 								url = urls.format(page=str(i))

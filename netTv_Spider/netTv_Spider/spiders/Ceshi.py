@@ -24,18 +24,19 @@ from urllib import quote_plus
 import datetime
 from scrapy.item import Item,Field
 import hashlib
-from netTv_Spider.Path_translate import Relative_to_Absolute,Get_Valid_Url,get_HeadUrl
+from netTv_Spider.Path_translate import Relative_to_Absolute,Get_Valid_Url,get_HeadUrl,Relative_to_Absolute2
 from netTv_Spider.Total_page_circulate import Total_page_circulate,Turn_True_Page
+from netTv_Spider.Get_Json_Content import Get_Json_Content
 
+NULLSAFE_ENABLED=0
 
 class netTvSpider(scrapy.Spider):
-	name ='exam_show'
+	name ='exam'
 	allowed_domain = []
 		
 	def __init__(self,*args,**kwargs):
 		super(netTvSpider,self).__init__(*args,**kwargs)
 		self.now = time.time()
-		self.one_month_ago = datetime.datetime(time.localtime(self.now).tm_year,time.localtime(self.now).tm_mon-1,time.localtime(self.now).tm_mday)
 		self.config = []
 		self.Index_Url = ""
 			
@@ -206,8 +207,7 @@ class netTvSpider(scrapy.Spider):
 		
 		print "最大页数是:%d"%max_pages
 		if All_Detail_Page is None:
-				#for i in range(1,max_pages+1):
-				for i in range(1,2):
+				for i in range(1,max_pages+1):
 						i = Turn_True_Page(i,self.name)
 						url = urls.format(page=str(i))
 						request = Request(url,callback = self.parse_final,dont_filter=True,meta={
@@ -223,8 +223,7 @@ class netTvSpider(scrapy.Spider):
 						request.meta['Final_Xpath'] = Final_Xpath
 						yield request
 		else:
-				#for i in range(1,int(max_pages)+1):
-				for i in range(1,2):
+				for i in range(1,int(max_pages)+1):
 						try:
 								i = Turn_True_Page(i,self.name)
 								url = urls.format(page=str(i))
@@ -240,7 +239,7 @@ class netTvSpider(scrapy.Spider):
 												}
 										}
 								})
-						request.meta['Index_Url'] = Index_Url
+						request.meta['Index_Url'] = url
 						request.meta['All_Detail_Page'] = All_Detail_Page
 						request.meta['Signal_Detail_Page'] = Signal_Detail_Page
 						request.meta['Target_Detail_Page'] = Target_Detail_Page
@@ -269,8 +268,7 @@ class netTvSpider(scrapy.Spider):
 		max_pages = Total_page_circulate(self.name,int(res_json))
 		print "最大页数是:%d"%max_pages
 		if All_Detail_Page is None:
-				#for i in range(1,max_pages+1):
-				for i in range(1,2):
+				for i in range(1,max_pages+1):
 						i = Turn_True_Page(i,self.name)
 						url = urls.format(page=str(i))
 						request = Request(url,callback = self.parse_final,dont_filter=True,meta={
@@ -286,8 +284,7 @@ class netTvSpider(scrapy.Spider):
 						request.meta['Final_Xpath'] = Final_Xpath
 						yield request
 		else:
-				#for i in range(1,int(max_pages)+1):
-				for i in range(1,2):
+				for i in range(1,int(max_pages)+1):
 						try:
 								i = Turn_True_Page(i,self.name)
 								url = urls.format(page=str(i))
@@ -325,8 +322,8 @@ class netTvSpider(scrapy.Spider):
 				print Exception,":",e
 		
 		
-		for url in detail_url:
-				if Signal_Detail_Page is None:
+		if Signal_Detail_Page is None:
+				for url in detail_url:
 						request = Request(url,callback = self.parse_final,meta={
 											'splash':{
 											'endpoint':'render.html',
@@ -339,9 +336,19 @@ class netTvSpider(scrapy.Spider):
 									})
 						request.meta['Final_Xpath'] = Final_Xpath
 						yield request
-				else:
-						request = Request(url,callback = self.parse_second)
-						request.meta['Index_Url'] = Index_Url
+		else:
+				for url in detail_url:
+						request = Request(url,callback = self.parse_second,meta={
+											'splash':{
+											'endpoint':'render.html',
+											'args':{
+													'wait':0.5,
+													'images':0,
+													'render_all':1
+													}
+											}
+								})
+						request.meta['Index_Url'] = url
 						request.meta['Signal_Detail_Page'] = Signal_Detail_Page
 						request.meta['Target_Detail_Page'] = Target_Detail_Page
 						request.meta['Final_Xpath'] = Final_Xpath
@@ -368,7 +375,7 @@ class netTvSpider(scrapy.Spider):
 		for xpath in All_Detail_Page['xpath']:
 				for url in Relative_to_Absolute(Index_Url,response.xpath(xpath).extract(),self.name):
 						detail_url.append(url)
-		#在考虑在每一层加一个判断，相当于如果没有（第一个）要传递给下一层的数据，就直接传递给final_parse（注：在传递给final_parse时需要判断是否需要渲染，这里我暂时先默认都渲染，但是之后可以考虑在config.json的Final_Xpath加一个flag，1表示需要渲染，0表示不需要）
+
 		if Signal_Detail_Page is None:
 				for url in detail_url:
 						request = Request(url,callback = self.parse_final,dont_filter=True,meta={
@@ -387,7 +394,6 @@ class netTvSpider(scrapy.Spider):
 						yield request
 		else:
 				for url in detail_url:
-						#因为特殊情况，这个页面都需要渲染，保证拿到下一页的link
 						request = Request(url,callback = self.parse_second,dont_filter=True,meta={
 											'splash':{
 											'endpoint':'render.html',
@@ -398,13 +404,13 @@ class netTvSpider(scrapy.Spider):
 													}
 											}
 									})
-						#我没想到起始页有不是www.xxxx.com/xxx/xxx这种开头的，这个芒果台是list.mangguo.com/.... 这里我不能用这个url头部来构造下一层url，所以我把当前页面的url头部作为新的Index_Url传递下去
 						request.meta['Index_Url'] = url
 						request.meta['Signal_Detail_Page'] = Signal_Detail_Page
 						request.meta['Target_Detail_Page'] = Target_Detail_Page
 						request.meta['Final_Xpath'] = Final_Xpath
 						yield request
-	
+						
+
 	def parse_second(self,response):
 		Index_Url = response.meta.get('Index_Url',None)
 		Signal_Detail_Page = response.meta.get('Signal_Detail_Page',None)
@@ -418,7 +424,12 @@ class netTvSpider(scrapy.Spider):
 								Some_Info[key] = response.xpath(Signal_Detail_Page['Some_Info'][key]).extract()[0]
 						except Exception,e:
 								print Exception,":",e
-		detail_url = Relative_to_Absolute(Index_Url,response.xpath(Signal_Detail_Page['xpath']).extract(),self.name)
+		#针对这几个网站做的特化全在这几行代码，在爬取中再模拟请求去拿到json信息（拼凑成正确url去访问），主要就是在Get_Json_Content写这几个json url的步骤，输入和输出都是一些url
+		#detail_url = Relative_to_Absolute(Index_Url,response.xpath(Signal_Detail_Page['xpath']).extract(),self.name)
+		detail_url = Relative_to_Absolute2(Index_Url,response.xpath(Signal_Detail_Page['xpath']).extract(),self.name)
+		detail_url = Get_Json_Content(detail_url,self.name)
+		
+		#detail_url = Relative_to_Absolute(Index_Url,detail_url,self.name)
 		if Target_Detail_Page is None:
 				for url in detail_url:
 						request = Request(url,callback = self.parse_final,dont_filter=True,meta={
