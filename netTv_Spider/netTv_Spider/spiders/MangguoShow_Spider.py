@@ -313,7 +313,7 @@ class netTvSpider(scrapy.Spider):
 		for i in res_json:
 				detail_url.append(i.get(All_Detail_Page['index'][length-1]))
 		try:
-				detail_url = Relative_to_Absolute(Index_Url,detail_url)
+				detail_url = Relative_to_Absolute(Index_Url,detail_url,self.name)
 		except Exception,e:
 				print Exception,":",e
 		
@@ -359,7 +359,7 @@ class netTvSpider(scrapy.Spider):
 		detail_url = []
 		
 		for xpath in All_Detail_Page['xpath']:
-				for url in Relative_to_Absolute(Index_Url,response.xpath(xpath).extract()):
+				for url in Relative_to_Absolute(Index_Url,response.xpath(xpath).extract(),self.name):
 						detail_url.append(url)
 		#在考虑在每一层加一个判断，相当于如果没有（第一个）要传递给下一层的数据，就直接传递给final_parse（注：在传递给final_parse时需要判断是否需要渲染，这里我暂时先默认都渲染，但是之后可以考虑在config.json的Final_Xpath加一个flag，1表示需要渲染，0表示不需要）
 		if Signal_Detail_Page is None:
@@ -411,7 +411,7 @@ class netTvSpider(scrapy.Spider):
 								Some_Info[key] = response.xpath(Signal_Detail_Page['Some_Info'][key]).extract()[0]
 						except Exception,e:
 								print Exception,":",e
-		detail_url = Relative_to_Absolute(Index_Url,response.xpath(Signal_Detail_Page['xpath']).extract())
+		detail_url = Relative_to_Absolute(Index_Url,response.xpath(Signal_Detail_Page['xpath']).extract(),self.name)
 		if Target_Detail_Page is None:
 				for url in detail_url:
 						request = Request(url,callback = self.parse_final,dont_filter=True,meta={
@@ -441,7 +441,7 @@ class netTvSpider(scrapy.Spider):
 		Index_Url = response.meta['Index_Url']
 		Target_Detail_Page = response.meta.get('Target_Detail_Page',None)
 		Final_Xpath = response.meta.get('Final_Xpath',None)
-		detail_url = Relative_to_Absolute(Index_Url,response.xpath(Target_Detail_Page['xpath']).extract())	
+		detail_url = Relative_to_Absolute(Index_Url,response.xpath(Target_Detail_Page['xpath']).extract(),self.name)	
 		Some_Info = {}
 		if 'Some_Info' in Target_Detail_Page.keys():
 				keys = Target_Detail_Page['Some_Info'].keys()
