@@ -3,7 +3,7 @@
 				"Is_Json":0,
 				"Index_Url":["http://v.qq.com/x/varietylist/?iyear=2016&offset=0"],
 				"Max_Page":{
-						"xpath":"//a[@class=\"page_btn page_num\"][last()]/span[@class=\"btn_inner\"]/text()",
+						"xpath":"//span[@class=\"_items\"]/a[last()]/text()",
 						"re":".+"
 					}
 			},
