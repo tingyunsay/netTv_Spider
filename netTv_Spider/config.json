@@ -427,7 +427,7 @@
 				"Signal_Detail_Page":{
 						"xpath":"//p[@tab-bthdr=\"data-tabbtt\"]/a/@list-month",
 						"Some_Info":{
-							"host":"//dd[@data-statectn=\"n_textInfo\"]/p[1]/a/text()"
+							"host":"//div[@class=\"play_info\"]/ul/li[5]/span/a/text()"
 							}
 					}	
 			},
