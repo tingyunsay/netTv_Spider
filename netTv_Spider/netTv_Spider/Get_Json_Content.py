@@ -18,6 +18,10 @@ def Get_Json_Content(urls , spider_name):
 						for i in json_content['videos']:
 								res_urls.append(i['url'])
 				return res_urls
+		else:
+				return urls
+		"""
+		#乐视网已经废弃这个 （json接口 + js动作) 去获取单期综艺的detail页面，而是直接给出在了网页上，算是简化了难度。这里我们将其注释掉
 		elif spider_name == "letv_sp":
 				res_urls = []
 				target_url = "http://www.le.com/ptv/vplay/{video_id}.html"
@@ -31,6 +35,5 @@ def Get_Json_Content(urls , spider_name):
 						except Exception,e:
 								print Exception,":",e
 				return res_urls
-		else:
-				return urls
+		"""
 

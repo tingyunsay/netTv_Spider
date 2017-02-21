@@ -425,7 +425,7 @@
 			},
 			{
 				"Signal_Detail_Page":{
-						"xpath":"//p[@tab-bthdr=\"data-tabbtt\"]/a/@list-month",
+						"xpath":"//div[@class=\"j_all_tuwen\"]/div/dl[@class=\"dl_temp\"]/dd/a/@href",
 						"Some_Info":{
 							"host":"//div[@class=\"play_info\"]/ul/li[5]/span/a/text()"
 							}

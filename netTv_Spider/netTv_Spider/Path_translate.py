@@ -60,6 +60,10 @@ def Relative_to_Absolute2(index_url,url_tail,site_name):
 		for i in url_tail:
 				res_urls.append(target_url.format(id=i))
 		return res_urls
+	else:
+		return url_tail
+	#乐视综艺不再使用这个接口 (按照月份和综艺id) 传递数据，将其注释掉
+	"""
 	elif site_name == "letv_sp":
 		res_urls = []
 		target_url = "http://api.le.com/mms/out/albumInfo/getVideoListByIdAndDate?&year=2016&type=1&month={month}&id={data_id}"
@@ -67,8 +71,7 @@ def Relative_to_Absolute2(index_url,url_tail,site_name):
 		for i in url_tail:
 				res_urls.append(target_url.format(month=i,data_id=data_id))
 		return res_urls
-	else:
-		return url_tail
+	"""
 
 
 def Get_Valid_Url(urls):

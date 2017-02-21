@@ -264,7 +264,7 @@ class netTvSpider(scrapy.Spider):
 				print Exception,":",e
 		urls = get_HeadUrl(Index_Url,self.name)	
 		
-		print "now the res_json is %s"%res_json
+		#print "now the res_json is %s"%res_json
 		max_pages = Total_page_circulate(self.name,int(res_json))
 		print "最大页数是:%d"%max_pages
 		if All_Detail_Page is None:
@@ -291,7 +291,7 @@ class netTvSpider(scrapy.Spider):
 						except Exception,e:
 								print Exception,":",e
 						request = Request(url,callback = self.parse_json2,dont_filter=True)
-						request.meta['Index_Url'] = Index_Url
+						request.meta['Index_Url'] = url
 						request.meta['All_Detail_Page'] = All_Detail_Page
 						request.meta['Signal_Detail_Page'] = Signal_Detail_Page
 						request.meta['Target_Detail_Page'] = Target_Detail_Page
@@ -550,13 +550,4 @@ class netTvSpider(scrapy.Spider):
 									l.add_value(key , Some_Info[key])
 						yield l.load_item()
 				
-										#'splash':{
-								#		'endpoint':'render.html',
-								#		'args':{
-								#				'wait':5,
-								#				'images':0,
-								#				'render_all':1
-								#				}
-								#		}
-								#})				
 
